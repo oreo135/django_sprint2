@@ -55,7 +55,7 @@ def index(request):
 def posts_detail(request, pk):
     for post in posts:
         if post is None:
-            raise Http404(f'Post with id {post_id} not found.')
+            raise Http404(f'Post with id {pk} not found.')
     template = 'blog/detail.html'
     context = {'post': posts[pk]}
     return render(request, template, context)
