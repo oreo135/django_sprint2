@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, Http404
 
 # Create your views here.
 
@@ -53,8 +53,11 @@ def index(request):
 
 def posts_detail(request, pk):
     template = 'blog/detail.html'
-    context = {'posts': posts[pk]}
-    return render(request, template, context)
+    if posts and pk in posts:
+        context = {'posts': posts[pk]}
+        return render(request, template, context)
+    else:
+        raise Http404('Некорректно указан id поста!')
 
 
 def category_posts(request, category_slug):
@@ -63,3 +66,5 @@ def category_posts(request, category_slug):
         template = 'blog/category.html'
         context = {'posts': filtered_posts}
         return render(request, template, context)
+    else:
+        raise Http404('Такой категории постов не существует!')
