@@ -65,5 +65,6 @@ def category_posts(request, category_slug):
     filtered_posts = [post for post in posts
                       if post['category'] == category_slug]
     template = 'blog/category.html'
-    context = {'posts': filtered_posts}
+    context = {'posts': filtered_posts,
+               'category_slug': category_slug}
     return render(request, template, context)
