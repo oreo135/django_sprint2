@@ -61,7 +61,6 @@ def posts_detail(request, pk):
     return render(request, template, context)
 
 
-
 def category_posts(request, category_slug):
     filtered_posts = [post for post in posts
                       if post['category'] == category_slug]
